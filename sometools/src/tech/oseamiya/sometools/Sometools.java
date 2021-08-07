@@ -27,6 +27,7 @@ import java.net.URL;
 import java.util.Collections;
 import java.util.List;
 import java.net.NetworkInterface;
+import java.util.ArrayList;
 
 import tech.oseamiya.sometools.NetworkInformation;
 
@@ -95,27 +96,27 @@ public class Sometools extends AndroidNonvisibleComponent {
   @SimpleFunction(description = "Get the list of dangerous application in the device")
   public YailList ListOfDangerousAppInDevice(){
       List<ApplicationInfo> applicationList = this.context.getPackageManager().getInstalledApplications(0);
-      YailList yailList = new YailList();
+      ArrayList arrayList = new ArrayList();
       for(ApplicationInfo applicationInfo : applicationList){
           String applicationPackageName = applicationInfo.packageName;
           String applicationName = getApplicationName(applicationPackageName).toLowerCase();
           if(applicationPackageName.contains("cc.madkite.freedom") || applicationName.contains("apk analyzer") || applicationName.contains("app analyzer") || applicationName.contains("apk editor") || applicationName.contains("app editor") || applicationPackageName.contains("devadvance.rootcloak") || applicationPackageName.contains(".robv.android.xposed.installer") || applicationPackageName.contains(".saurik.substrate") || applicationPackageName.contains(".devadvance.rootcloakplus") || applicationPackageName.contains(".zachspong.temprootremovejb") || applicationPackageName.contains(".amphoras.hidemyroot") || applicationPackageName.contains(".formyhm.hideroot") || applicationPackageName.contains(".koushikdutta.rommanager") || applicationPackageName.contains(".dimonvideo.luckypatcher") || applicationPackageName.contains(".chelpus.lackypatch") || applicationPackageName.contains(".ramdroid.appquarantine") || applicationPackageName.contains("sk.styk.martin.apkanalyzer")){
-              yailList.add(applicationPackageName);
+              arrayList.add(applicationPackageName);
           }
       }
-      return yailList;
+      return YailList.makeList(arrayList);
   }
   @SimpleFunction
   public YailList GetListOfAllSuperUserApk(){
       List<ApplicationInfo> applicationList = this.context.getPackageManager().getInstalledApplications(0);
-      YailList yailList = new YailList();
+      ArrayList arrayList = new ArrayList();
       for(ApplicationInfo applicationInfo : applicationList){
           String applicationPackageName = applicationInfo.packageName;
           if(applicationPackageName.contains(".noshufou") || applicationPackageName.contains(".superuser") || applicationPackageName.contains(".superuser.apk") || applicationPackageName.contains(".yellowes.su") || applicationPackageName.contains(".chainfire.supersu") || applicationPackageName.contains(".thirdparty.superuser") || applicationPackageName.contains(".koushikdutta.superuser")){
-              yailList.add(applicationPackageName);
+              arrayList.add(applicationPackageName);
           }
       }
-      return yailList;
+      return YailList.makeList(arrayList);
   }
   @SimpleFunction
   public void FetchExternalIp1(){
